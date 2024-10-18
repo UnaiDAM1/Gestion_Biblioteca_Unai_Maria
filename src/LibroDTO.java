@@ -1,9 +1,9 @@
 public class LibroDTO {
     int id;
     String titulo;
-    int isbn;
+    String isbn;
 
-    public LibroDTO(String titulo, int isbn) {
+    public LibroDTO(String titulo, String isbn) {
         this.titulo = titulo;
         this.isbn = isbn;
     }
@@ -24,11 +24,11 @@ public class LibroDTO {
         this.titulo = titulo;
     }
 
-    public int getIsbn() {
+    public String getIsbn() {
         return isbn;
     }
 
-    public void setIsbn(int isbn) {
+    public void setIsbn(String isbn) {
         this.isbn = isbn;
     }
 
