@@ -71,7 +71,6 @@ public class LibroDAO {
 
 
         //Lo actualizamos...
-
         String update = "UPDATE libro SET titulo = ?, isbn = ?  WHERE id = ?";
         try (PreparedStatement ps = conexion.prepareStatement(update)) {
             ps.setString(1, nombre);
@@ -104,7 +103,7 @@ public class LibroDAO {
 
     //Leer las asignaturas
     public List<LibroDTO> leerLibros() {
-        List<LibroDTO> listaEquipo = new ArrayList<>();
+        List<LibroDTO> listaLibros = new ArrayList<>();
         String select = "SELECT * from libro";
 
         try (Statement sentencia = conexion.createStatement();
@@ -117,13 +116,13 @@ public class LibroDAO {
 
                 LibroDTO nuevoLibro = new LibroDTO(titulo, isbn);
                 nuevoLibro.setId(id);
-                listaEquipo.add(nuevoLibro);
+                listaLibros.add(nuevoLibro);
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return listaEquipo;
+        return listaLibros;
     }
 
 
