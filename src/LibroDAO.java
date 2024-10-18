@@ -45,6 +45,7 @@ public class LibroDAO {
         //Pedimos el ID del libro que queremos actualizar
         System.out.print("¿Qué libro deseas actualizar? (Introduce el ID) : ");
         int id = scanner.nextInt();
+        scanner.nextLine();
 
         //Comprobamos si el libro existe
         String comprobarLibro = "SELECT COUNT(*) FROM libro WHERE id = ?";
@@ -57,7 +58,7 @@ public class LibroDAO {
             }
         }
 
-        //Si existe, pedimos los nuevos datos
+
         System.out.print("Título: ");
         String nombre = scanner.nextLine();
         System.out.print("ISBN: ");
