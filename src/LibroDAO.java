@@ -11,7 +11,7 @@ public class LibroDAO {
         this.conexion = conexion;
     }
 
-    public LibroDTO crearLibro() throws SQLException {
+    public void crearLibro() throws SQLException {
         System.out.print("Introduce el titulo:  ");
 
         String titulo = scanner.nextLine();
@@ -28,29 +28,24 @@ public class LibroDAO {
         //Si existe mostramos un error
         if (rs.next() && rs.getInt(1) > 0) {
             System.out.println("Error: El libro" + titulo + " ya existe.");
-            return null;
-
 
         } else {
-
             //Si no existe, lo añadimos
             String insertSql = "INSERT INTO libro (titulo, isbn) VALUES (?, ?)";
             try (PreparedStatement insertStmt = conexion.prepareStatement(insertSql)) {
                 insertStmt.setString(1, titulo);
                 insertStmt.setString(2, isbn);
                 insertStmt.executeUpdate();
-
-                LibroDTO nuevoLibro = new LibroDTO(titulo,isbn);
-                return nuevoLibro;
             }
         }
     }
 
 
-    public LibroDTO actualizarLibro() throws SQLException {
+    public void actualizarLibro() throws SQLException {
         //Pedimos el ID del libro que queremos actualizar
         System.out.print("¿Qué libro deseas actualizar? (Introduce el ID) : ");
         int id = scanner.nextInt();
+        scanner.nextLine();
 
         //Comprobamos si el libro existe
         String comprobarLibro = "SELECT COUNT(*) FROM libro WHERE id = ?";
@@ -63,7 +58,7 @@ public class LibroDAO {
             }
         }
 
-        //Si existe, pedimos los nuevos datos
+
         System.out.print("Título: ");
         String nombre = scanner.nextLine();
         System.out.print("ISBN: ");
@@ -71,7 +66,6 @@ public class LibroDAO {
 
 
         //Lo actualizamos...
-
         String update = "UPDATE libro SET titulo = ?, isbn = ?  WHERE id = ?";
         try (PreparedStatement ps = conexion.prepareStatement(update)) {
             ps.setString(1, nombre);
@@ -82,8 +76,7 @@ public class LibroDAO {
             e.printStackTrace();
         }
 
-        LibroDTO libroActualizado = new LibroDTO(nombre, isbn);
-        return libroActualizado;
+
     }
 
 
@@ -104,7 +97,7 @@ public class LibroDAO {
 
     //Leer las asignaturas
     public List<LibroDTO> leerLibros() {
-        List<LibroDTO> listaEquipo = new ArrayList<>();
+        List<LibroDTO> listaLibros = new ArrayList<>();
         String select = "SELECT * from libro";
 
         try (Statement sentencia = conexion.createStatement();
@@ -117,13 +110,13 @@ public class LibroDAO {
 
                 LibroDTO nuevoLibro = new LibroDTO(titulo, isbn);
                 nuevoLibro.setId(id);
-                listaEquipo.add(nuevoLibro);
+                listaLibros.add(nuevoLibro);
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return listaEquipo;
+        return listaLibros;
     }
 
 

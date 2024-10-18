@@ -6,6 +6,7 @@ public class Main {
 
     static Conexion conexionBdd = new Conexion();
     static LibroDAO libro = new LibroDAO(conexionBdd.conectar());
+    static AutorDAO autor = new AutorDAO(conexionBdd.conectar());
     static Scanner scanner = new Scanner(System.in);
 
 
@@ -25,16 +26,26 @@ public class Main {
             case 1:
                 libro.crearLibro();
                 menu();
-
+            case 2:
+                autor.crearAutor();
+                menu();
             case 5:
                 libro.leerLibros();
+                menu();
+            case 6:
+                autor.leerAutores();
                 menu();
             case 9:
                 libro.actualizarLibro();
                 menu();
+            case 10:
+                autor.actualizarAutor();
+                menu();
             case 13:
                 libro.eliminarLibro();
                 menu();
+            case 14:
+                autor.eliminarAutor();
             default:
                 System.out.println("ERROOOOOOR");
         }
