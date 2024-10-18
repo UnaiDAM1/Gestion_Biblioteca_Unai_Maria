@@ -14,7 +14,7 @@ public class AutorDAO {
 
 
     //Crear un nuevo Autor
-    public AutorDTO crearAutor() throws SQLException {
+    public void crearAutor() throws SQLException {
         System.out.print("Introduce el nombre del autor:  ");
         String nombre = scanner.nextLine();
 
@@ -29,7 +29,7 @@ public class AutorDAO {
         //Si existe mostramos un error
         if (rs.next() && rs.getInt(1) > 0) {
             System.out.println("Error:" + nombre + " ya esta registrado.");
-            return null;
+
 
 
         } else {
@@ -40,14 +40,12 @@ public class AutorDAO {
                 insertStmt.setString(1, nombre);
                 insertStmt.executeUpdate();
 
-                AutorDTO nuevoAutor = new AutorDTO(nombre);
-                return nuevoAutor;
             }
         }
     }
 
 //Actualizar Autor
-    public AutorDTO actualizarAutor() throws SQLException {
+    public void actualizarAutor() throws SQLException {
         //Pedimos el ID del autor que queremos actualizar
         System.out.print("¿Qué autor deseas actualizar? (Introduce el ID) : ");
         int id = scanner.nextInt();
@@ -77,8 +75,6 @@ public class AutorDAO {
             e.printStackTrace();
         }
 
-        AutorDTO autorActualizado = new AutorDTO(nombre);
-        return autorActualizado;
     }
 
 
