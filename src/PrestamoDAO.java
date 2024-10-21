@@ -42,6 +42,7 @@ public class PrestamoDAO {
             ps.setDate(2, Date.valueOf(fechaFin));
             ps.setInt(3, idUs);
             ps.setInt(4, idLi);
+            ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
