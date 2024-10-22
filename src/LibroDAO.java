@@ -95,7 +95,7 @@ public class LibroDAO {
     }
 
 
-    //Leer las asignaturas
+    //Leer los libros
     public List<LibroDTO> leerLibros() {
         List<LibroDTO> listaLibros = new ArrayList<>();
         String select = "SELECT * from libro";
