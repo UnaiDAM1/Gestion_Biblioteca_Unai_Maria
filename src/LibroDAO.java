@@ -92,6 +92,7 @@ public class LibroDAO {
             stmt.setInt(1, id);
             stmt.executeUpdate();
         }
+
     }
 
 
