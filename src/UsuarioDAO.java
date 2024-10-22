@@ -12,9 +12,9 @@ public class UsuarioDAO {
         this.conexion = conexion.conectar();
     }
     public void insertUsuario(){
-        System.out.println("Introduzca su nombre de usuario: ");
+        System.out.print("Introduzca su nombre de usuario: ");
         String nombre = scanner.nextLine();
-        String insert = "INSERT INTO " + tab + " (nombre) VALUES (?);";
+        String insert = "INSERT INTO usuario (nombre) VALUES (?)";
         try (PreparedStatement ps = conexion.prepareStatement(insert)){
             ps.setString(1, nombre);
         } catch (SQLException e) {
