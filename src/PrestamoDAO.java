@@ -11,42 +11,55 @@ public class PrestamoDAO {
     String tab = "Prestamo";
     Connection conexion;
 
-    public PrestamoDAO(Conexion conexion){
+    public PrestamoDAO(Conexion conexion) {
         this.conexion = conexion.conectar();
     }
+
     public void insertPrestamo() {
-        System.out.println("Introduzca su ID de usuario: ");
+        System.out.print("Introduzca su ID de usuario: ");
         int idUs = scanner.nextInt();
-        System.out.println("Introduzca el ID del libro: ");
+        scanner.nextLine();
+        System.out.print("Introduzca el ID del libro: ");
         int idLi = scanner.nextInt();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");  // Formato de fecha
+        scanner.nextLine();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); //Formato de fecha
         LocalDate fechaFin = null;
         boolean fechaValida = false;
 
         while (!fechaValida) {
-            System.out.println("Introduce una fecha en formato dd/MM/yyyy para la devoluciónq:");
-            String fechaStr = scanner.nextLine();
+            System.out.print("Introduce una fecha en formato dd/MM/yyyy para la devolución:");
+            String fechaStr = scanner.nextLine(); //Leer la fecha correctamente
+
+            //Comprobar si la fecha está vacía
+            if (fechaStr.isEmpty()) {
+                System.out.println("No se ha ingresado ninguna fecha. Inténtalo de nuevo.");
+                continue; //Volver a pedir la fecha
+            }
 
             try {
-                fechaFin = LocalDate.parse(fechaStr, formatter);  // Parseamos la fecha con el formato especificado
-                fechaValida = true;  // Si no hay error, la fecha es válida
+                fechaFin = LocalDate.parse(fechaStr, formatter); //Parseamos la fecha con el formato especificado
+                fechaValida = true; //Si no hay error, la fecha es válida
             } catch (DateTimeParseException e) {
                 System.out.println("Formato de fecha inválido. Inténtalo de nuevo.");
             }
         }
 
-        LocalDate fechaInicio = LocalDate.now();
+        LocalDate fechaInicio = LocalDate.now(); //Fecha de inicio actual
         String insert = "INSERT INTO " + tab + " (fechaInicio, fechaFin, usuarioId, libroId) VALUES (?,?,?,?);";
         try (PreparedStatement ps = conexion.prepareStatement(insert)) {
-            ps.setDate(1, Date.valueOf(fechaInicio));
-            ps.setDate(2, Date.valueOf(fechaFin));
+            ps.setDate(1, Date.valueOf(fechaInicio)); //Convertimos LocalDate a java.sql.Date
+            ps.setDate(2, Date.valueOf(fechaFin)); //Convertimos LocalDate a java.sql.Date
             ps.setInt(3, idUs);
             ps.setInt(4, idLi);
             ps.executeUpdate();
+            System.out.println("Préstamo registrado correctamente.");
         } catch (SQLException e) {
+            System.out.println("Error al insertar el préstamo: " + e.getMessage());
             e.printStackTrace();
         }
     }
+
     public void eliminarPrestamos() throws SQLException {
         //Pedimos el ID del libro que queremos eliminar
         System.out.print("¿Qué prestamo deseas eliminar? (Introduce el ID): ");
@@ -59,6 +72,7 @@ public class PrestamoDAO {
             stmt.executeUpdate();
         }
     }
+
     public List<PrestamoDTO> leerPrestamos() {
         List<PrestamoDTO> listaPrestamos = new ArrayList<>();
         String select = "SELECT * from " + tab;

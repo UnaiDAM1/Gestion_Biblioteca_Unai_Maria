@@ -11,17 +11,21 @@ public class UsuarioDAO {
     public UsuarioDAO(Conexion conexion){
         this.conexion = conexion.conectar();
     }
+
     public void insertUsuario(){
         System.out.print("Introduzca su nombre de usuario: ");
         String nombre = scanner.nextLine();
 
-        String insert = "INSERT INTO usuario (nombre) VALUE (?)";
+        String insert = "INSERT INTO usuario (nombre) VALUES (?)";
         try (PreparedStatement ps = conexion.prepareStatement(insert)){
             ps.setString(1, nombre);
+            ps.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
+
+
     public void actualizarUsuario() throws SQLException {
         //Pedimos el ID del usuario que queremos actualizar
         System.out.print("¿Qué usuario deseas actualizar? (Introduce el ID) : ");
