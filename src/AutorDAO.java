@@ -98,7 +98,7 @@ public class AutorDAO {
 
     public List<AutorDTO> leerAutores() {
         List<AutorDTO> listaAutores = new ArrayList<>();
-        String select = "SELECT * from libro";
+        String select = "SELECT * from autor";
 
         try (Statement sentencia = conexion.createStatement();
              ResultSet rs = sentencia.executeQuery(select)) {

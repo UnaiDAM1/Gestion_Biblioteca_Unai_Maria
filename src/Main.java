@@ -16,6 +16,7 @@ public class Main {
 
 
     public static void menu() throws SQLException {
+        sincronizacion.sincronizar();
         System.out.println("----------------------MENÚ----------------------");
         System.out.printf("1. CREAR LIBRO \n2. CREAR AUTOR\n3. CREAR USUARIO\n 4.CREAR PRÉSTAMO\n");
         System.out.printf("5. LEER LIBROS\n6. LEER AUTORES\n7. LEER USUARIOS\n 8.LEER PRÉSTAMOS\n");
