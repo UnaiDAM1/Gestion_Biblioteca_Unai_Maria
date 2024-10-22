@@ -5,10 +5,13 @@ import java.util.Scanner;
 
 public class AutorDAO {
     Connection conexion;
+    LibroAutorDAO libroAutorDAO;
+
     Scanner scanner = new Scanner(System.in);
 
-    public AutorDAO(Connection conexion) {
-        this.conexion = conexion;
+    public AutorDAO(Conexion conexion) {
+        this.conexion = conexion.conectar();
+        libroAutorDAO = new LibroAutorDAO(conexion);
     }
 
 
@@ -90,6 +93,7 @@ public class AutorDAO {
             stmt.setInt(1, id);
             stmt.executeUpdate();
         }
+        libroAutorDAO.eliminarPorAutor(id);
     }
 
     public List<AutorDTO> leerAutores() {
