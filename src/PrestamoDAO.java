@@ -24,7 +24,7 @@ public class PrestamoDAO {
         boolean fechaValida = false;
 
         while (!fechaValida) {
-            System.out.println("Introduce una fecha en formato dd/MM/yyyy para la devolución:");
+            System.out.println("Introduce una fecha en formato dd/MM/yyyy para la devoluciónq:");
             String fechaStr = scanner.nextLine();
 
             try {
