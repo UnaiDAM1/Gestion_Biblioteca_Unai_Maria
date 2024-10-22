@@ -10,6 +10,7 @@ public class PrestamoDAO {
     Scanner scanner = new Scanner(System.in);
     String tab = "Prestamo";
     Connection conexion;
+
     public PrestamoDAO(Conexion conexion){
         this.conexion = conexion.conectar();
     }
