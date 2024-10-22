@@ -14,7 +14,8 @@ public class UsuarioDAO {
     public void insertUsuario(){
         System.out.print("Introduzca su nombre de usuario: ");
         String nombre = scanner.nextLine();
-        String insert = "INSERT INTO usuario (nombre) VALUES (?)";
+
+        String insert = "INSERT INTO usuario (nombre) VALUE (?)";
         try (PreparedStatement ps = conexion.prepareStatement(insert)){
             ps.setString(1, nombre);
         } catch (SQLException e) {
