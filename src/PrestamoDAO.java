@@ -19,13 +19,12 @@ public class PrestamoDAO {
         int idUs = scanner.nextInt();
         System.out.println("Introduzca el ID del libro: ");
         int idLi = scanner.nextInt();
-        System.out.println("Introduzca la fecha de devolución: ");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");  // Formato de fecha
         LocalDate fechaFin = null;
         boolean fechaValida = false;
 
         while (!fechaValida) {
-            System.out.println("Introduce una fecha en formato dd/MM/yyyy:");
+            System.out.println("Introduce una fecha en formato dd/MM/yyyy para la devolución:");
             String fechaStr = scanner.nextLine();
 
             try {

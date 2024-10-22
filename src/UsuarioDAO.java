@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class UsuarioDAO {
     Scanner scanner = new Scanner(System.in);
-    String tab = "Usuario";
+    String tab = "usuario";
     Connection conexion;
     public UsuarioDAO(Conexion conexion){
         this.conexion = conexion.conectar();
