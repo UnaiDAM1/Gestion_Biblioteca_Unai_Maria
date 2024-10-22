@@ -7,8 +7,8 @@ public class LibroDAO {
     Connection conexion;
     Scanner scanner = new Scanner(System.in);
 
-    public LibroDAO(Connection conexion) {
-        this.conexion = conexion;
+    public LibroDAO(Conexion conexion) {
+        this.conexion = conexion.conectar();
     }
 
     public void crearLibro() throws SQLException {
