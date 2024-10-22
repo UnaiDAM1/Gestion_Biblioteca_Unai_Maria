@@ -10,8 +10,8 @@ public class PrestamoDAO {
     Scanner scanner = new Scanner(System.in);
     String tab = "Prestamo";
     Connection conexion;
-    public PrestamoDAO(Connection conexion){
-        this.conexion = conexion;
+    public PrestamoDAO(Conexion conexion){
+        this.conexion = conexion.conectar();
     }
     public void insertPrestamo() {
         System.out.println("Introduzca su ID de usuario: ");

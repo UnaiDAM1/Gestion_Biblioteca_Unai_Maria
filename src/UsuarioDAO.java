@@ -8,8 +8,8 @@ public class UsuarioDAO {
     Scanner scanner = new Scanner(System.in);
     String tab = "Usuario";
     Connection conexion;
-    public UsuarioDAO(Connection conexion){
-        this.conexion = conexion;
+    public UsuarioDAO(Conexion conexion){
+        this.conexion = conexion.conectar();
     }
     public void insertUsuario(){
         System.out.println("Introduzca su nombre de usuario: ");

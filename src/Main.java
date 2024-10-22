@@ -5,10 +5,10 @@ import java.util.Scanner;
 public class Main {
 
     static Conexion conexionBdd = new Conexion();
-    static LibroDAO libro = new LibroDAO(conexionBdd.conectar());
-    static AutorDAO autor = new AutorDAO(conexionBdd.conectar());
-    static UsuarioDAO usuario = new UsuarioDAO(conexionBdd.conectar());
-    static PrestamoDAO prestamo = new PrestamoDAO(conexionBdd.conectar());
+    static LibroDAO libro = new LibroDAO(conexionBdd);
+    static AutorDAO autor = new AutorDAO(conexionBdd);
+    static UsuarioDAO usuario = new UsuarioDAO(conexionBdd);
+    static PrestamoDAO prestamo = new PrestamoDAO(conexionBdd);
 
     static Scanner scanner = new Scanner(System.in);
 
