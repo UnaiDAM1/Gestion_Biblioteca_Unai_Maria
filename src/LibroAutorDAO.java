@@ -50,6 +50,20 @@ public class LibroAutorDAO {
             throw new RuntimeException(e);
         }
     }
+    public void eliminarRelacion(){
+        System.out.println("Introduce el ID del libro: ");
+        int idLibro = scanner.nextInt();
+        System.out.println("Introduce el ID del autor: ");
+        int idAutor = scanner.nextInt();
+        String delete = "DELETE * FROM " + tab + " WHERE idAutor = ? idLibro = ?";
+        try (PreparedStatement stmt = conexion.prepareStatement(delete)) {
+            stmt.setInt(1, idAutor);
+            stmt.setInt(2, idLibro);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 /*
  */
 }

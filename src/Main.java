@@ -9,9 +9,9 @@ public class Main {
     static AutorDAO autor = new AutorDAO(conexionBdd);
     static UsuarioDAO usuario = new UsuarioDAO(conexionBdd);
     static PrestamoDAO prestamo = new PrestamoDAO(conexionBdd);
+    static LibroAutorDAO asociarLibroaAutor = new LibroAutorDAO(conexionBdd);
 
     static Scanner scanner = new Scanner(System.in);
-
 
 
     public static void menu() throws SQLException {
@@ -70,6 +70,11 @@ public class Main {
             case 15:
                 prestamo.eliminarPrestamos();
                 menu();
+            case 16:
+                asociarLibroaAutor.anadirAutoraLibro();
+                menu();
+            case 17:
+                asociarLibroaAutor.eliminarRelacion();
             default:
                 System.out.println("ERROOOOOOR");
         }
