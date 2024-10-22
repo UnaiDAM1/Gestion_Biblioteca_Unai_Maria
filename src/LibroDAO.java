@@ -5,10 +5,12 @@ import java.util.Scanner;
 
 public class LibroDAO {
     Connection conexion;
+    LibroAutorDAO libroAutorDAO;
     Scanner scanner = new Scanner(System.in);
 
-    public LibroDAO(Connection conexion) {
-        this.conexion = conexion;
+    public LibroDAO(Conexion conexion) {
+        this.conexion = conexion.conectar();
+        libroAutorDAO = new LibroAutorDAO(conexion);
     }
 
     public void crearLibro() throws SQLException {
@@ -92,6 +94,7 @@ public class LibroDAO {
             stmt.setInt(1, id);
             stmt.executeUpdate();
         }
+        libroAutorDAO.eliminarPorLibro(id);
     }
 
 

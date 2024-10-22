@@ -41,6 +41,15 @@ public class LibroAutorDAO {
             throw new RuntimeException(e);
         }
     }
+    public void eliminarPorLibro(int idLibro){
+        String deletePorLibro = "DELETE * FROM " + tab + " WHERE idAutor = ?";
+        try (PreparedStatement stmt = conexion.prepareStatement(deletePorLibro)) {
+            stmt.setInt(1, idLibro);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 /*
  */
 }
