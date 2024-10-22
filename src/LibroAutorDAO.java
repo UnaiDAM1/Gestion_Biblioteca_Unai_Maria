@@ -1,6 +1,4 @@
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -63,6 +61,26 @@ public class LibroAutorDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+    public List<LibroAutorDTO> leerLibroAutor() {
+        List<LibroAutorDTO> listaLibroAutor = new ArrayList<>();
+        String select = "SELECT * from " + tab;
+
+        try (Statement sentencia = conexion.createStatement();
+             ResultSet rs = sentencia.executeQuery(select)) {
+
+            while (rs.next()) {
+                int idLibro = rs.getInt("idLibro");
+                int idAutor = rs.getInt("idAutor");
+
+                LibroAutorDTO nuevoLibroAutor= new LibroAutorDTO(idLibro, idAutor);
+                listaLibroAutor.add(nuevoLibroAutor);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return listaLibroAutor;
     }
 /*
  */
