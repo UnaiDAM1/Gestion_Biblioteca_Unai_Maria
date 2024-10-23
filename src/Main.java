@@ -17,12 +17,18 @@ public class Main {
 
     public static void menu() throws SQLException {
         sincronizacion.sincronizar();
-        System.out.println("----------------------MENÚ----------------------");
-        System.out.printf("1. CREAR LIBRO \n2. CREAR AUTOR\n3. CREAR USUARIO\n 4.CREAR PRÉSTAMO\n");
-        System.out.printf("5. LEER LIBROS\n6. LEER AUTORES\n7. LEER USUARIOS\n 8.LEER PRÉSTAMOS\n");
-        System.out.printf("9. ACTUALIZAR LIBRO\n10. ACTUALIZAR AUTOR\n 11.ACTUALIZAR USUARIO \n");
-        System.out.printf("12. ELIMINAR LIBRO\n13. ELIMINAR AUTOR\n14.ELIMINAR USUARIO\n15.ELIMINAR PRÉSTAMO\n");
-        System.out.println("11. SALIR\n");
+        System.out.println("\n----------------------MENÚ----------------------");
+        System.out.println("         ---------CREAR---------");
+        System.out.printf("             1. CREAR LIBRO \n             2. CREAR AUTOR\n             3. CREAR USUARIO\n             4. CREAR PRÉSTAMO\n");
+        System.out.println("         ---------LEER---------");
+        System.out.printf("             5. LEER LIBROS\n             6. LEER AUTORES\n             7. LEER USUARIOS\n             8. LEER PRÉSTAMOS\n");
+        System.out.println("         ---------ACTUALIZAR---------");
+        System.out.printf("             9. ACTUALIZAR LIBRO\n            10. ACTUALIZAR AUTOR\n            11. ACTUALIZAR USUARIO \n");
+        System.out.println("         ---------ELIMINAR---------");
+        System.out.printf("            12. ELIMINAR LIBRO\n            13. ELIMINAR AUTOR\n            14. ELIMINAR USUARIO\n            15. ELIMINAR PRÉSTAMO\n");
+        System.out.println("         ---------ASOCIACIÓN LIBRO Y AUTOR---------");
+        System.out.printf("            16. ASOCIAR LIBRO A AUTOR\n            17. ELIMINAR RELACIÓN LIBRO-AUTOR\n\n");
+        System.out.println("            18. SALIR\n");
         System.out.print("Introduce una opción: ");
         int opcion = scanner.nextInt();
 
@@ -41,6 +47,8 @@ public class Main {
                 sincronizacion.sincronizar();
                 menu();
             case 4:
+                sincronizacion.leerUsuarios();
+                sincronizacion.leerLibros();
                 prestamo.insertPrestamo();
                 sincronizacion.sincronizar();
                 menu();
@@ -85,17 +93,23 @@ public class Main {
                 sincronizacion.sincronizar();
                 menu();
             case 16:
+                sincronizacion.leerAutores();
+                sincronizacion.leerLibros();
                 asociarLibroaAutor.anadirAutoraLibro();
                 sincronizacion.sincronizar();
                 menu();
             case 17:
+                sincronizacion.leerLibros();
+                sincronizacion.leerAutores();
                 asociarLibroaAutor.eliminarRelacion();
                 sincronizacion.sincronizar();
+                menu();
+
             case 18:
                 System.out.println("Saliendo del programa...");
                 break;
             default:
-                System.out.println("ERROOOOOOR");
+                System.out.println("ERROR. INTRODUZCA UN NÚMERO VÁLIDO");
         }
 
     }

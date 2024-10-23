@@ -24,6 +24,6 @@ public class AutorDTO {
 
     @Override
     public String toString() {
-        return  id + ", "+ autor;
+        return  id + " - "+ autor;
     }
 }

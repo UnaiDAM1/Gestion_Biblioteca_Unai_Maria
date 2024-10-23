@@ -55,11 +55,11 @@ public class PrestamoDTO {
 
     @Override
     public String toString() {
-        return "PrestamoDTO: " +
-                "ID = " + id +
-                ", Fecha de Inicio = " + fechaInicio +
-                ", Fecha de Fin = " + fechaFin +
-                ", ID Usuario = " + usuarioId +
-                ", ID Libro = " + libroId;
+        return  id + "- "+
+                "Usuario: " + usuarioId +
+                "Libro: " + libroId+
+                "Fecha Préstamo: " + fechaInicio +
+                " - " + fechaFin;
+
     }
 }

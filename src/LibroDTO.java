@@ -34,6 +34,6 @@ public class LibroDTO {
 
     @Override
     public String toString() {
-        return  id + ", "+ titulo + ", " + isbn;
+        return  id + " - "+ titulo + "  " + isbn;
     }
 }

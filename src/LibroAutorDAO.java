@@ -17,9 +17,9 @@ public class LibroAutorDAO {
         this.libros = libros.leerLibros();
     }
     public void anadirAutoraLibro(){
-        System.out.println("Introduzca el ID del autor: ");
+        System.out.print("Introduzca el ID del autor: ");
         int idAutor = scanner.nextInt();
-        System.out.println("Introduzca el ID del libro: ");
+        System.out.print("Introduzca el ID del libro: ");
         int idLibro = scanner.nextInt();
         String insert = "INSERT INTO " + tab + " (idLibro, idAutor) VALUES (?,?);";
         try (PreparedStatement ps = conexion.prepareStatement(insert)){
@@ -27,7 +27,7 @@ public class LibroAutorDAO {
             ps.setInt(2, idAutor);
             ps.executeUpdate();
         } catch (SQLException e){
-            e.printStackTrace();
+            throw new RuntimeException("Esta Asociación ya existe");
         }
     }
     public void eliminarPorAutor(int idAutor){
@@ -48,21 +48,29 @@ public class LibroAutorDAO {
             throw new RuntimeException(e);
         }
     }
-    public void eliminarRelacion(){
-        System.out.println("Introduce el ID del libro: ");
+    public void eliminarRelacion() {
+        System.out.print("Introduce el ID del libro: ");
         int idLibro = scanner.nextInt();
-        System.out.println("Introduce el ID del autor: ");
+        System.out.print("Introduce el ID del autor: ");
         int idAutor = scanner.nextInt();
-        String delete = "DELETE * FROM " + tab + " WHERE idAutor = ? idLibro = ?";
+
+        String delete = "DELETE FROM " + tab + " WHERE idAutor = ? AND idLibro = ?";
         try (PreparedStatement stmt = conexion.prepareStatement(delete)) {
             stmt.setInt(1, idAutor);
             stmt.setInt(2, idLibro);
-            stmt.executeUpdate();
+            int rowsAffected = stmt.executeUpdate();
+
+            if (rowsAffected <= 0) {
+                throw new RuntimeException("No se encontró la relación con los IDs proporcionados.");
+            }
+            else {
+                System.out.println("Relación eliminada");
+            }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException();
         }
     }
-    public List<LibroAutorDTO> leerLibroAutor() {
+        public List<LibroAutorDTO> leerLibroAutor() {
         List<LibroAutorDTO> listaLibroAutor = new ArrayList<>();
         String select = "SELECT * from " + tab;
 
