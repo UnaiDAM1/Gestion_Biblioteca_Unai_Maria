@@ -2,13 +2,16 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
+/*
+* Clase AutorDAO es la que se encarga de la gestión de los autores dentro de la base de datos
+* */
 public class AutorDAO {
     Connection conexion;
     LibroAutorDAO libroAutorDAO;
 
     Scanner scanner = new Scanner(System.in);
 
+    //Constructor de la clase
     public AutorDAO(Conexion conexion) {
         this.conexion = conexion.conectar();
         libroAutorDAO = new LibroAutorDAO(conexion);
@@ -96,10 +99,12 @@ public class AutorDAO {
         libroAutorDAO.eliminarPorAutor(id);
     }
 
+    //Metodo para sacar los autores guardados en la base de datos en una lista
     public List<AutorDTO> leerAutores() {
         List<AutorDTO> listaAutores = new ArrayList<>();
         String select = "SELECT * from autor";
 
+        //Creamos la sentencia para sacar los datos de cada autor y meterlo en la lista
         try (Statement sentencia = conexion.createStatement();
              ResultSet rs = sentencia.executeQuery(select)) {
 

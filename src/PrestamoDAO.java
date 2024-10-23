@@ -6,15 +6,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/*
+ * Clase PrestamoDAO es la que se encarga de la gestión de los prestamos dentro de la base de datos
+ * */
 public class PrestamoDAO {
     Scanner scanner = new Scanner(System.in);
     String tab = "Prestamo";
     Connection conexion;
 
+    //Constructor de la clase
     public PrestamoDAO(Conexion conexion) {
         this.conexion = conexion.conectar();
     }
 
+    //Crear un nuevo prestamo
     public void insertPrestamo() {
         System.out.print("Introduzca su ID de usuario: ");
         int idUs = scanner.nextInt();
@@ -60,6 +65,7 @@ public class PrestamoDAO {
         }
     }
 
+    //Eliminar prestamo
     public void eliminarPrestamos() throws SQLException {
         //Pedimos el ID del libro que queremos eliminar
         System.out.print("¿Qué prestamo deseas eliminar? (Introduce el ID): ");
@@ -73,6 +79,7 @@ public class PrestamoDAO {
         }
     }
 
+    //Leer prestamos
     public List<PrestamoDTO> leerPrestamos() {
         List<PrestamoDTO> listaPrestamos = new ArrayList<>();
         String select = "SELECT * from " + tab;

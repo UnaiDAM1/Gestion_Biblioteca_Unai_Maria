@@ -3,16 +3,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/*
+ * Clase LibroDAO es la que se encarga de la gestión de los libros dentro de la base de datos
+ * */
 public class LibroDAO {
     Connection conexion;
     LibroAutorDAO libroAutorDAO;
     Scanner scanner = new Scanner(System.in);
 
+    //Constructor de la clase
     public LibroDAO(Conexion conexion) {
         this.conexion = conexion.conectar();
         libroAutorDAO = new LibroAutorDAO(conexion);
     }
 
+    //Crear un nuevo Libro
     public void crearLibro() throws SQLException {
         System.out.print("Introduce el titulo:  ");
 
@@ -42,7 +47,7 @@ public class LibroDAO {
         }
     }
 
-
+    //Actualizar libro
     public void actualizarLibro() throws SQLException {
         //Pedimos el ID del libro que queremos actualizar
         System.out.print("¿Qué libro deseas actualizar? (Introduce el ID) : ");
@@ -80,8 +85,6 @@ public class LibroDAO {
 
 
     }
-
-
     //Eliminar libro
     public void eliminarLibro() throws SQLException {
         //Pedimos el ID del libro que queremos eliminar
