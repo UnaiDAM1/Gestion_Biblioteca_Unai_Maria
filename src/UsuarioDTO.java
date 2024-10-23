@@ -1,11 +1,16 @@
 public class UsuarioDTO {
+    //Variables id y nombre
     int id;
     String nombre;
 
+
+    //Constructor
     public UsuarioDTO(String nombre) {
         this.nombre = nombre;
     }
 
+
+    //Getters y Setters
     public int getId() {
         return id;
     }
@@ -22,6 +27,8 @@ public class UsuarioDTO {
         this.nombre = nombre;
     }
 
+
+    //To String
     @Override
     public String toString() {
         return  id + " - " + nombre;

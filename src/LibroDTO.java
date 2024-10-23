@@ -1,13 +1,16 @@
 public class LibroDTO {
+    //Variables id titulo e isbn
     int id;
     String titulo;
     String isbn;
 
+    //Constructor
     public LibroDTO(String titulo, String isbn) {
         this.titulo = titulo;
         this.isbn = isbn;
     }
 
+    //Getters y Setters
     public int getId() {
         return id;
     }
@@ -32,6 +35,8 @@ public class LibroDTO {
         this.isbn = isbn;
     }
 
+
+    //To String
     @Override
     public String toString() {
         return  id + " - "+ titulo + "  " + isbn;

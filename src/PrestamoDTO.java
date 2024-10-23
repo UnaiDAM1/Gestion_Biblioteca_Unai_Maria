@@ -1,11 +1,14 @@
 import java.time.LocalDate;
 public class PrestamoDTO {
+
+    //Variables id, fechaInicio, fechaFin, usuarioId, libroId
     int id;
     LocalDate fechaInicio;
     LocalDate fechaFin;
     int usuarioId;
     int libroId;
 
+    //Constructor
     public PrestamoDTO(LocalDate fechaInicio, LocalDate fechaFin, int usuarioId, int libroId) {
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
@@ -13,6 +16,7 @@ public class PrestamoDTO {
         this.libroId = libroId;
     }
 
+    //Getters Y Setters
     public int getId() {
         return id;
     }
@@ -53,6 +57,8 @@ public class PrestamoDTO {
         this.libroId = libroId;
     }
 
+
+    //To String
     @Override
     public String toString() {
         return  id + "- "+

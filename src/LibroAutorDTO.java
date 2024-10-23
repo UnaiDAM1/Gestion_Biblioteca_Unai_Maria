@@ -1,11 +1,15 @@
 public class LibroAutorDTO {
+    //Variables idAutor e idLibro
     int idLibro;
     int idAutor;
+
+    //Constructor
     public LibroAutorDTO(int idLibro, int idAutor){
         this.idAutor = idAutor;
         this.idLibro = idLibro;
     }
 
+    //Getters Y Setters
     public int getIdLibro() {
         return idLibro;
     }
@@ -22,6 +26,8 @@ public class LibroAutorDTO {
         this.idAutor = idAutor;
     }
 
+
+    //To String
     @Override
     public String toString() {
         return  idLibro + " - " +

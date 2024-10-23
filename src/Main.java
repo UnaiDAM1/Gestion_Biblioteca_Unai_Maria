@@ -3,8 +3,10 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
-
+    //Instancia a la conexion a la BDD
     static Conexion conexionBdd = new Conexion();
+
+    //Conexión a los DAOs
     static LibroDAO libro = new LibroDAO(conexionBdd);
     static AutorDAO autor = new AutorDAO(conexionBdd);
     static UsuarioDAO usuario = new UsuarioDAO(conexionBdd);
@@ -15,6 +17,8 @@ public class Main {
     static Scanner scanner = new Scanner(System.in);
 
 
+
+    //Menú
     public static void menu() throws SQLException {
         sincronizacion.sincronizar();
         System.out.println("\n----------------------MENÚ----------------------");
@@ -32,7 +36,7 @@ public class Main {
         System.out.print("Introduce una opción: ");
         int opcion = scanner.nextInt();
 
-
+        //Switch con las distintas opciones del menú
         switch (opcion) {
             case 1:
                 libro.crearLibro();

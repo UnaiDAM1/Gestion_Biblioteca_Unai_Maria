@@ -11,29 +11,22 @@ public class Conexion {
     private Connection conexion;
 
 
+    //Establecer la conexión a la base de datos
     public Conexion() {
         try {
+            //Cargar el driver JDBC para MariaDB
             Class.forName("org.mariadb.jdbc.Driver");
+
+            //Establecer la conexión
             conexion = DriverManager.getConnection(URL + BDD, USER, PASSW);
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
     }
 
-
+    //Devuelve el objeto Connection para operar en la base de datos
     public Connection conectar() {
         return conexion;
-    }
-
-
-    public void cerrarConexion() {
-        try {
-            if (conexion != null) {
-                conexion.close();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 
 
